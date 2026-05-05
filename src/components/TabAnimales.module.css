@@ -366,3 +366,32 @@
   opacity: 0.4;
 }
 .fotoViewLabel { font-size: 10px; color: var(--text-2); text-align: center; padding: 4px; }
+
+
+.clickableImg {
+  cursor: zoom-in;
+  transition: transform 0.2s;
+}
+
+.clickableImg:hover {
+  transform: scale(1.05);
+}
+
+.imgOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.imgFull {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}

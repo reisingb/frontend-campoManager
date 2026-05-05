@@ -75,7 +75,7 @@
 
 .btn {
   width: 100%;
-  background: var(--text-1);
+  background: var(--accent);
   color: #fff;
   padding: 11px;
   font-size: 14px;

@@ -105,6 +105,7 @@ function FichaModal({ animal, onClose, onEdit }) {
   const slots = getSlots(animal.tipo);
   const edad  = calcularEdad(animal.nacimiento);
   const [pdfLoading, setPdfLoading] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
 
   const handleDownload = async () => {
     setPdfLoading(true);
@@ -166,13 +167,26 @@ function FichaModal({ animal, onClose, onEdit }) {
               const src = animal.fotos?.[s];
               return (
                 <div key={s} className={styles.fotoViewSlot}>
-                  {src
-                    ? <img src={src} alt={FOTOS_LABELS[s]} />
-                    : <div className={styles.fotoViewEmpty}>📷</div>}
+                 {src
+                 ? <img 
+                src={src} 
+                alt={FOTOS_LABELS[s]} 
+                onClick={() => setSelectedImg(src)}
+                 className={styles.clickableImg}
+                />
+                : <div className={styles.fotoViewEmpty}>📷</div>}
                   <div className={styles.fotoViewLabel}>{FOTOS_LABELS[s]}</div>
                 </div>
               );
             })}
+                        {selectedImg && (
+              <div 
+                className={styles.imgOverlay} 
+                onClick={() => setSelectedImg(null)}
+              >
+                <img src={selectedImg} className={styles.imgFull} />
+              </div>
+            )}
           </div>
 
           {/* Historial */}
