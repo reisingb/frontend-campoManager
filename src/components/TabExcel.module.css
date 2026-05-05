@@ -1,0 +1,229 @@
+.mainExcel {
+  display: flex;
+  justify-content: center;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 40%;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin-bottom: 6px;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 1rem;
+  line-height: 1.55;
+}
+
+.hint code {
+  font-family: var(--font-mono);
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+.dropZone {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  background: var(--surface-2);
+  transition: background 0.15s;
+  color: var(--text-2);
+}
+
+.dropZone:hover { background: var(--bg); }
+
+.dropZone svg {
+  margin: 0 auto 8px;
+  display: block;
+}
+
+.dropZone p {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.errTxt {
+  font-size: 12px;
+  color: var(--red);
+  margin-top: 8px;
+}
+
+.preview {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+}
+
+.dupeWarn {
+  color: var(--amber);
+  margin-left: 4px;
+}
+
+.importOk {
+  font-size: 13px;
+  color: var(--green-text);
+  background: var(--green-bg);
+  padding: 9px 12px;
+  border-radius: var(--radius-md);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.btnImport {
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  padding: 11px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  margin-top: 10px;
+}
+
+.btnImport:hover:not(:disabled) { opacity: 0.88; }
+
+.btnExport {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  padding: 9px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--text-1);
+  width: 100%;
+  justify-content: center;
+}
+
+.btnExport:hover { background: var(--bg); }
+
+.tableWrap {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.exTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.exTable th {
+  background: var(--surface-2);
+  padding: 7px 10px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.exTable td {
+  padding: 7px 10px;
+  color: var(--text-1);
+  border-bottom: 1px solid var(--border);
+}
+
+.exTable tr:last-child td { border-bottom: none; }
+
+
+/* ─── Tablets (<= 1024px) ─── */
+@media (max-width: 1024px) {
+  .wrap {
+    width: 65%;
+  }
+}
+
+/* ─── Tablets chicas / phablets (<= 768px) ─── */
+@media (max-width: 768px) {
+  .wrap {
+    width: 85%;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 14px;
+  }
+
+  .hint {
+    font-size: 12px;
+  }
+}
+
+/* ─── Mobile (<= 480px) ─── */
+@media (max-width: 480px) {
+  .mainExcel {
+    padding: 0 10px;
+  }
+
+  .wrap {
+    width: 100%;
+    gap: 0.8rem;
+  }
+
+  .card {
+    padding: 0.9rem;
+    border-radius: var(--radius-md);
+  }
+
+  .cardTitle {
+    font-size: 13px;
+  }
+
+  .hint {
+    font-size: 11.5px;
+    line-height: 1.4;
+  }
+
+  .dropZone {
+    padding: 1rem;
+  }
+
+  .dropZone p {
+    font-size: 12px;
+  }
+
+  .btnImport,
+  .btnExport {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .exTable {
+    font-size: 11px;
+  }
+
+  .exTable th,
+  .exTable td {
+    padding: 6px 8px;
+  }
+}
+

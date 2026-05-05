@@ -1,0 +1,125 @@
+{
+  "author": "Braian Reising",
+  "name": "campo-manager-frontend",
+  "version": "1.0.0",
+  "description": "Gestión de animales de campo - CampoManager",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "electron-start": "electron .",
+    "dev": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron-start\"",
+    "build:win": "npm run react-build && electron-builder build --win",
+    "build:mac": "npm run react-build && electron-builder build --mac",
+    "build:linux": "npm run react-build && electron-builder build --linux",
+    "clean": "rimraf dist node_modules/.vite .vite cache",
+    "clean:full": "rimraf dist node_modules package-lock.json",
+    "reinstall": "npm install",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "bonjour-service": "^1.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "xlsx": "^0.18.5",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "extends": null,
+    "appId": "com.campomanager.app",
+    "productName": "CampoManager",
+    "copyright": "Copyright © 2024",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets"
+      },
+      {
+        "from": "../backend/dist",
+        "to": "backend/dist"
+      },
+      {
+        "from": "../backend/public",
+        "to": "backend/public"
+      },
+      {
+        "from": "../backend/node_modules",
+        "to": "backend/node_modules"
+      }
+    ],
+    "files": [
+      "build/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "category": "Office"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerHeaderIcon": "assets/icon.ico"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

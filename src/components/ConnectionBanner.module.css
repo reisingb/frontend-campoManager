@@ -1,0 +1,26 @@
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--amber-bg);
+  color: var(--amber-text);
+  font-size: 13px;
+  padding: 8px 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.banner svg { flex-shrink: 0; }
+
+.banner span { flex: 1; }
+
+.btnRetry {
+  background: none;
+  border: 1px solid var(--amber);
+  color: var(--amber-text);
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.btnRetry:hover:not(:disabled) { background: rgba(0,0,0,0.05); }

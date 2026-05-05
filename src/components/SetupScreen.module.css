@@ -1,0 +1,156 @@
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--bg);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.iconWrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  color: var(--text-2);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.optIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  flex-shrink: 0;
+}
+
+.optBody {
+  flex: 1;
+}
+
+.optBody h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-1);
+  margin-bottom: 3px;
+}
+
+.optBody p {
+  font-size: 12px;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+.divider {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-3);
+  padding: 8px 0;
+}
+
+.btnPrimary {
+  background: var(--text-1);
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btnPrimary:hover:not(:disabled) { opacity: 0.85; }
+
+.btnSecondary {
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--border-strong);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btnSecondary:hover:not(:disabled) { background: var(--bg); }
+
+.btnRow {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+.footnote {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border);
+  border-top-color: var(--text-1);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 1.25rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

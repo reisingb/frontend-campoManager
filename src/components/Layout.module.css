@@ -1,0 +1,45 @@
+.shell { min-height:100vh; display:flex; flex-direction:column; background:var(--bg); }
+.topbar { display:flex; align-items:center; justify-content:space-between; padding:0.875rem 1.25rem; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:10; }
+.topLeft { display:flex; align-items:center; gap:10px; }
+.logo { color:var(--text-2); flex-shrink:0; }
+.logoImg { width:32px; height:32px; object-fit:contain; border-radius:var(--radius-sm); flex-shrink:0; }
+.gymName { display:block; font-size:14px; font-weight:600; color:var(--text-1); line-height:1.2; }
+.gymDate { display:block; font-size:11px; color:var(--text-3); text-transform:capitalize; }
+.topRight { display:flex; align-items:center; gap:8px; }
+.roleBadge { font-size:11px; font-weight:500; padding:3px 8px; border-radius:var(--radius-sm); }
+.roleServer { background:var(--blue-bg); color:var(--blue-text); }
+.roleClient { background:var(--surface-2); color:var(--text-2); }
+.userBadge { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--text-2); }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.dotOnline  { background:var(--green); }
+.dotOffline { background:var(--red); }
+.btnLogout { font-size:12px; color:var(--text-2); background:none; border:1px solid var(--border-strong); border-radius:var(--radius-sm); padding:4px 10px; }
+.btnLogout:hover { background:var(--surface-2); }
+.tabs { display:flex; gap:4px; padding:0.75rem 1.25rem 0; background:var(--surface); border-bottom:1px solid var(--border); }
+.tab { flex-shrink:0; padding:7px 14px; font-size:13px; font-weight:400; border:1px solid transparent; border-radius:var(--radius-sm) var(--radius-sm) 0 0; background:none; color:var(--text-2); border-bottom:none; margin-bottom:-1px; }
+.tab:hover { color:var(--text-1); background:var(--surface-2); }
+.tabActive { background:var(--bg); color:var(--text-1); font-weight:500; border-color:var(--border); border-bottom-color:var(--bg); }
+.main {
+  display: flex;
+  flex-direction: column;
+  flex:1; 
+  width:100%; 
+  padding:1.5rem 1.25rem 3rem;   
+  background-image: url('/assets/fondo2.jpg'); /* ruta de tu imagen */ 
+  background-size: cover; background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+/* 
+.main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/fondo2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.5);
+  z-index: -1;
+} 
+*/

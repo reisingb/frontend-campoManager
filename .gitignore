@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/
+.env
+generate-license.js
+LICENSE.txt
+private.pem
