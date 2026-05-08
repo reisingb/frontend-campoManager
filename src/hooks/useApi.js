@@ -25,6 +25,11 @@ export function useApi(serverIp) {
     deleteAnimal: (id)      => request('DELETE', `/animales/${id}`),
     ping:         ()        => request('GET',    '/../api/ping'),
 
+    // Ubicaciones
+    getUbicaciones:    (id)      => request('GET',    `/animales/${id}/ubicaciones`),
+    guardarUbicacion:  (id, data)=> request('POST',   `/animales/${id}/ubicaciones`, data),
+    borrarUbicaciones: (id)      => request('DELETE', `/animales/${id}/ubicaciones`),
+
     // PDF: devuelve blob directamente
     getPdfUrl: (serverIp, id) => `http://${serverIp}/api/animales/${id}/pdf`,
   };

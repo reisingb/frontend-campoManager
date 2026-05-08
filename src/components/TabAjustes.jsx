@@ -41,9 +41,9 @@ function SeccionPersonalizacion() {
     <div className={styles.card}>
       <h2 className={styles.cardTitle}>Personalización</h2>
 
-      {/* Nombre del gimnasio */}
+      {/* Nombre del campo */}
       <div className={styles.subSection}>
-        <p className={styles.subLabel}>Nombre del gimnasio</p>
+        <p className={styles.subLabel}>Nombre del campo</p>
         <div className={styles.nameRow}>
           <input
             type="text"
@@ -51,7 +51,7 @@ function SeccionPersonalizacion() {
             maxLength={40}
             onChange={e => { setNameVal(e.target.value); setNameSaved(false); }}
             onKeyDown={e => e.key === 'Enter' && handleSaveName()}
-            placeholder="Mi Gimnasio"
+            placeholder="Mi Campo"
             className={styles.nameInput}
           />
           <button className={styles.btnSaveName} onClick={handleSaveName}>

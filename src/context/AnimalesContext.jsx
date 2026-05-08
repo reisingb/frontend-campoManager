@@ -15,11 +15,7 @@ export function AnimalesProvider({ children }) {
   const socketRef = useRef(null);
 
   const reload = useCallback(async () => {
-    if (!config?.serverIp) {
-      setAnimales(INITIAL_ANIMALES);
-      setOnline(false);
-      return;
-    }
+    if (!config?.serverIp) { setAnimales(INITIAL_ANIMALES); setOnline(false); return; }
     setLoadingData(true);
     try {
       const data = await api.getAnimales();
@@ -33,30 +29,33 @@ export function AnimalesProvider({ children }) {
     }
   }, [config?.serverIp]);
 
-  // ── WebSocket tiempo real ────────────────────────────────────────────────
+  // ── WebSocket tiempo real ──────────────────────────────────────────────────
   useEffect(() => {
     if (!config?.serverIp) return;
-
-    // Carga socket.io dinámicamente (puede no estar en Electron)
     const connectWS = async () => {
       try {
         const { io } = await import('socket.io-client');
-        const url = `http://${config.serverIp.split('/')[0]}`;
+        const url    = `http://${config.serverIp.split('/')[0]}`;
         const socket = io(url, { transports: ['websocket', 'polling'], reconnection: true });
         socketRef.current = socket;
 
         socket.on('animal:creado',      a     => setAnimales(prev => prev.find(x=>x.id===a.id) ? prev : [...prev, a]));
         socket.on('animal:actualizado', a     => setAnimales(prev => prev.map(x => x.id===a.id ? {...x,...a} : x)));
         socket.on('animal:eliminado',   ({id})=> setAnimales(prev => prev.filter(x => x.id !== id)));
-        socket.on('connect',            ()    => setOnline(true));
-        socket.on('disconnect',         ()    => setOnline(false));
+        // Actualizar ultimaUbicacion en tiempo real sin recargar fotos
+        socket.on('animal:ubicacion',   ({ id, ubicacion }) =>
+          setAnimales(prev => prev.map(x => x.id === id
+            ? { ...x, ultimaUbicacion: ubicacion }
+            : x
+          ))
+        );
+        socket.on('connect',    () => setOnline(true));
+        socket.on('disconnect', () => setOnline(false));
       } catch {
-        // socket.io-client no disponible, usar polling
         const interval = setInterval(reload, 15000);
         return () => clearInterval(interval);
       }
     };
-
     connectWS();
     return () => { socketRef.current?.disconnect(); };
   }, [config?.serverIp]);
@@ -108,13 +107,13 @@ export function AnimalesProvider({ children }) {
   const descargarPdf = async (id) => {
     if (!config?.serverIp) return { ok: false, msg: 'Sin servidor' };
     try {
-      const url = `http://${config.serverIp}/api/animales/${id}/pdf`;
-      const res = await fetch(url);
+      const url  = `http://${config.serverIp}/api/animales/${id}/pdf`;
+      const res  = await fetch(url);
       if (!res.ok) throw new Error(`Error ${res.status}`);
       const blob = await res.blob();
-      const a = animales.find(x => x.id === id);
+      const a    = animales.find(x => x.id === id);
       const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
+      link.href     = URL.createObjectURL(blob);
       link.download = `ficha-${(a?.nombre || id).replace(/\s+/g,'-')}.pdf`;
       link.click();
       return { ok: true };

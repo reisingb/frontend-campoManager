@@ -5,6 +5,7 @@ import {
   FOTOS_VACUNO, FOTOS_EQUINO, FOTOS_LABELS,
 } from '../data/initialData';
 import { calcularEdad, initials, formatFecha } from '../utils/animalUtils';
+import GeoModal from './GeoModal';
 import styles from './TabAnimales.module.css';
 
 // ─── Utilidades ───────────────────────────────────────────────────────────────
@@ -100,7 +101,7 @@ ${histRows
 }
 
 // ─── Modal: Ficha de visualización ───────────────────────────────────────────
-function FichaModal({ animal, onClose, onEdit }) {
+function FichaModal({ animal, onClose, onEdit, onGeo }) {
   const { descargarPdf } = useAnimales();
   const slots = getSlots(animal.tipo);
   const edad  = calcularEdad(animal.nacimiento);
@@ -153,6 +154,12 @@ function FichaModal({ animal, onClose, onEdit }) {
             <div className={styles.fichaField}><label>Procedencia</label><p>{animal.procedencia || '—'}</p></div>
             <div className={styles.fichaField}><label>Padre</label><p>{animal.padre || '—'}</p></div>
             <div className={styles.fichaField}><label>Madre</label><p>{animal.madre || '—'}</p></div>
+            {animal.ultimaUbicacion && (
+              <div className={styles.fichaField}>
+                <label>Última ubicación</label>
+                <p>{animal.ultimaUbicacion.lat?.toFixed(4)}, {animal.ultimaUbicacion.lng?.toFixed(4)}</p>
+              </div>
+            )}
             {animal.obs && (
               <div className={`${styles.fichaField} ${styles.full}`}>
                 <label>Observaciones</label><p>{animal.obs}</p>
@@ -209,6 +216,7 @@ function FichaModal({ animal, onClose, onEdit }) {
         <div className={styles.modalFooter}>
           <button className={styles.btnDownload} onClick={handleDownload} disabled={pdfLoading}>
             {pdfLoading ? 'Generando PDF…' : '↓ Descargar ficha PDF'}</button>
+          <button className={styles.btnLocation} onClick={() => onGeo(animal)}>📍 Ubicación</button>
           <div style={{ flex: 1 }} />
           <button className={styles.btnCancel} onClick={onClose}>Cerrar</button>
           <button className={styles.btnSave} onClick={onEdit}>Editar</button>
@@ -503,6 +511,7 @@ export default function TabAnimales() {
   const [filterRaza, setFilterRaza] = useState('');
   const [viewing,    setViewing]    = useState(null);
   const [editing,    setEditing]    = useState(null);   // null = cerrado, 'new' = nuevo, objeto = editar
+  const [geoAnimal,  setGeoAnimal]  = useState(null);   // animal para modal de geolocalización
   const [toast,      setToast]      = useState('');
 
   const showToast = (msg) => {
@@ -628,6 +637,7 @@ export default function TabAnimales() {
           animal={viewing}
           onClose={() => setViewing(null)}
           onEdit={() => { setEditing(viewing); setViewing(null); }}
+          onGeo={(animal) => { setGeoAnimal(animal); setViewing(null); }}
         />
       )}
 
@@ -637,6 +647,14 @@ export default function TabAnimales() {
           animal={editing === 'new' ? null : editing}
           onClose={() => setEditing(null)}
           onSaved={handleFormSaved}
+        />
+      )}
+
+      {/* Modal: geolocalización */}
+      {geoAnimal && (
+        <GeoModal
+          animal={geoAnimal}
+          onClose={() => setGeoAnimal(null)}
         />
       )}
     </div>

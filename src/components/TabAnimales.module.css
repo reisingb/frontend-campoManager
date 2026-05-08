@@ -69,10 +69,11 @@
 /* Grid de tarjetas */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  overflow-y: auto;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 220px));
   gap: 12px;
+  overflow-y: auto;
 
+  justify-content: center;
 }
 
 .emptyState {
@@ -236,6 +237,15 @@
   font-size: 13px;
 }
 .btnDownload:hover { background: var(--blue-bg); }
+.btnLocation {
+  background: none;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 8px 14px;
+  font-size: 13px;
+  margin-left: 8px;
+}
+.btnLocation:hover { background: var(--green-bg); }
 .modalErr { color: var(--red); font-size: 13px; margin-top: 8px; }
 
 /* Sections */
